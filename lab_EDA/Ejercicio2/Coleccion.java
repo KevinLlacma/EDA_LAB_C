@@ -77,4 +77,33 @@ public class Coleccion {
         }
         return sb.toString();
     }
+    public Coleccion condicionPeso(String condicion) {
+        Coleccion resultado = new Coleccion();
+        for (int i = 0; i < contador; i++) {
+            Persona persona = arrPersona[i];
+            double imc = persona.getPeso() / (persona.getAltura() * persona.getAltura());
+            switch (condicion) {
+                case "Ideal":
+                    if (imc >= 18.5 && imc <= 24.9) {
+                        resultado.agregarPersona(persona);
+                    }
+                    break;
+                case "Desnutricion":
+                    if (imc < 18.5) {
+                        resultado.agregarPersona(persona);
+                    }
+                    break;
+                case "Sobre peso":
+                    if (imc > 24.9) {
+                        resultado.agregarPersona(persona);
+                    }
+                    break;
+            }
+        }
+        return resultado;
+    }
+    public int longitud() {
+        return contador;
+    }
+   
 }
