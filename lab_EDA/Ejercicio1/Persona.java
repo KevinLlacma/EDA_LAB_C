@@ -89,5 +89,9 @@ public class Persona {
     public double getAltura() {
         return altura;
     }
+    public boolean esPesoIdeal() {
+        double imc = peso / (altura * altura);
+        return imc >= 18.5 && imc <= 24.9;
+    }
 
 }

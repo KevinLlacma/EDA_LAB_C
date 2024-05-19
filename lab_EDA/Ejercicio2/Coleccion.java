@@ -4,93 +4,77 @@ public class Coleccion {
     private Persona[] arrPersona;
     private int contador;
 
-    public Coleccion(){
-        this(10);
+    // Constructor por defecto
+    public Coleccion() {
+        this.arrPersona = new Persona[10];
+        this.contador = 0;
     }
-    public Coleccion(int tamaño){
-        arrPersona = new Persona[tamaño];
-        contador = 0;
+
+    // Constructor con capacidad n
+    public Coleccion(int n) {
+        this.arrPersona = new Persona[n];
+        this.contador = 0;
     }
-    public void agregarPersona(Persona p1) {
-        if(contador < arrPersona.length){
-            arrPersona[contador] = p1;
+
+    // Método para agregar una persona
+    public void agregarPersona(Persona p) {
+        if (contador < arrPersona.length) {
+            arrPersona[contador] = p;
             contador++;
-        }else{
-            System.out.println("El arreglo esta lleno");
+        } else {
+            System.out.println("El arreglo está lleno. No se puede agregar más personas.");
         }
-    }    
-    public int buscarPersona(Persona p){
-        for(int i=0; i < contador;i++){
-            if(arrPersona[i].getNombre().equals(p.getNombre())&& arrPersona[i].getEdad() == p.getEdad() && arrPersona[i].getSexo() == p.getSexo()){
+    }
+
+    // Método para buscar una persona
+    public int buscarPersona(Persona p) {
+        for (int i = 0; i < contador; i++) {
+            Persona persona = arrPersona[i];
+            if (persona.getNombre().equals(p.getNombre()) && persona.getEdad() == p.getEdad() && persona.getSexo() == p.getSexo()) {
                 return i;
             }
         }
         return -1;
     }
-    public void eliminarPersona(Persona p){
+
+    // Método para eliminar una persona
+    public void eliminarPersona(Persona p) {
         int pos = buscarPersona(p);
-        if(pos!= -1){
-            for(int i=pos; i < contador-1;i++){
-                arrPersona[i] = arrPersona[i+1];
-            }
-            arrPersona[contador-1] = null;
+        if (pos != -1) {
+            arrPersona[pos] = arrPersona[contador - 1];
+            arrPersona[contador - 1] = null;
             contador--;
-        }else{
-            System.out.println("No se encontro la persona");
         }
     }
-    public Coleccion mayoresEdad(){
+
+    // Método para obtener personas mayores de edad
+    public Coleccion mayoresEdad() {
         Coleccion mayores = new Coleccion();
-        for(int i=0; i < contador;i++){
-            if(arrPersona[i].getEdad() >= 18){
+        for (int i = 0; i < contador; i++) {
+            if (arrPersona[i].getEdad() >= 18) {
                 mayores.agregarPersona(arrPersona[i]);
             }
         }
         return mayores;
     }
-    public Coleccion pesoIdeal(){
-        Coleccion ideal = new Coleccion();
-        for(int i=0; i < contador;i++){
-            if(arrPersona[i].getSexo() == 'M'){
-                if(arrPersona[i].getEdad() >= 18){
-                    if(arrPersona[i].getPeso() < 18.5){
-                        ideal.agregarPersona(arrPersona[i]);
-                    }
-                }
-            }else{
-                if(arrPersona[i].getEdad() >= 18){
-                    if(arrPersona[i].getPeso() < 24.9){
-                        ideal.agregarPersona(arrPersona[i]);
-                    }
-                }
-            }
-        }
-        return ideal;
-    }
-    public String toString() {
-        String cadena = "";
+
+    // Método para obtener personas con peso ideal
+    public Coleccion pesoIdeal() {
+        Coleccion ideales = new Coleccion();
         for (int i = 0; i < contador; i++) {
-            cadena += arrPersona[i].toString() + "\n";
-        }
-        return cadena;
-    }
-    public Coleccion condicionPeso(String condicion){
-        Coleccion peso = new Coleccion();
-        for(int i=0; i < contador;i++){
-            if(arrPersona[i].getSexo() == 'M'){
-                if(arrPersona[i].getEdad() >= 18){
-                    if(arrPersona[i].getPeso() < 18.5){
-                        peso.agregarPersona(arrPersona[i]);
-                    }
-                }
-            }else{
-                if(arrPersona[i].getEdad() >= 18){
-                    if(arrPersona[i].getPeso() < 24.9){
-                        peso.agregarPersona(arrPersona[i]);
-                    }
-                }
+            if (arrPersona[i].esPesoIdeal()) {
+                ideales.agregarPersona(arrPersona[i]);
             }
         }
-        return peso;
+        return ideales;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < contador; i++) {
+            sb.append(arrPersona[i].toString()).append("\n");
+        }
+        return sb.toString();
     }
 }
