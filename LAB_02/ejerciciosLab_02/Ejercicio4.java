@@ -3,11 +3,10 @@ package ejerciciosLab_02;
 public class Ejercicio4 {
 
     public static void main(String[] args) {
-        int numDiscos = 3; // Número de discos
+        int numDiscos = 3; // N° de discos
         moverDiscos(numDiscos, 'A', 'C', 'B'); // A es la barra de origen, C es la barra de destino, B es la barra auxiliar
     }
 
-    // Método recursivo para resolver el problema de la Torre de Hanoi
     public static void moverDiscos(int numDiscos, char origen, char destino, char auxiliar) {
         if (numDiscos == 1) {
             System.out.println("Mover disco 1 de " + origen + " a " + destino);

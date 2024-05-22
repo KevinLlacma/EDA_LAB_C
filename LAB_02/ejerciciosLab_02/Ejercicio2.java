@@ -13,7 +13,7 @@ public class Ejercicio2 {
         return true;
     }
 
-    // si un número está ordenado de forma decreciente
+    // si está ordenado de forma decreciente
     public static boolean estaOrdenadoDecreciente(int numero) {
         String numStr = String.valueOf(numero);
         for (int i = 0; i < numStr.length() - 1; i++) {
@@ -25,7 +25,7 @@ public class Ejercicio2 {
     }
 
     public static void main(String[] args) {
-        int numero = 12345;
+        int numero = 123456789;
         System.out.println("El número " + numero + " está ordenado de forma creciente: " + estaOrdenadoCreciente(numero));
         System.out.println("El número " + numero + " está ordenado de forma decreciente: " + estaOrdenadoDecreciente(numero));
     }

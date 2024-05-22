@@ -2,20 +2,7 @@ package ejerciciosLab_02;
 
 public class Ejercicio5 {
 
-    public static void main(String[] args) {
-        int[] arreglo = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19}; // Arreglo ordenado
-        int objetivo = 7; // Elemento a buscar
-
-        int resultado = busquedaBinaria(arreglo, objetivo);
-
-        if (resultado != -1) {
-            System.out.println("Elemento encontrado en la posición: " + resultado);
-        } else {
-            System.out.println("Elemento no encontrado en el arreglo.");
-        }
-    }
-
-    // Método para realizar la búsqueda binaria
+    
     public static int busquedaBinaria(int[] arreglo, int objetivo) {
         int izquierda = 0;
         int derecha = arreglo.length - 1;
@@ -23,7 +10,7 @@ public class Ejercicio5 {
         while (izquierda <= derecha) {
             int medio = izquierda + (derecha - izquierda) / 2;
 
-            // Verificar si el objetivo está en el medio
+            
             if (arreglo[medio] == objetivo) {
                 return medio;
             }
@@ -38,8 +25,20 @@ public class Ejercicio5 {
             }
         }
 
-        // El elemento no está presente en el arreglo
+        // si el elemento no está presente en el arreglo
         return -1;
+    }
+    public static void main(String[] args) {
+        int[] arreglo = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19}; 
+        int objetivo = 7; 
+
+        int resultado = busquedaBinaria(arreglo, objetivo);
+
+        if (resultado != -1) {
+            System.out.println("Encontrado: en la posición: " + resultado);
+        } else {
+            System.out.println("NO fue encontrado en el arreglo.");
+        }
     }
 }
 
